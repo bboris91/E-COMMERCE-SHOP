@@ -11,14 +11,17 @@
   },
   "dependencies": {
     "@repo/sanity": "workspace:*",
+    "@sanity/vision": "^3.88.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sanity": "^3.88.0",
-    "@sanity/vision": "^3.88.0"
+    "styled-components": "^6.3.12"
   },
   "devDependencies": {
     "@repo/config": "workspace:*",
+    "@types/node": "^22",
     "@types/react": "^19.0.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vite": "^6.4.1"
   }
 }

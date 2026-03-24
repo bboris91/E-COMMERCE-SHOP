@@ -1,0 +1,123 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Tenant {
+  id              String    @id @default(cuid())
+  slug            String    @unique
+  name            String
+  domain          String    @unique
+  theme           String
+  sanityProjectId String
+  sanityDataset   String
+  createdAt       DateTime  @default(now())
+
+  users    User[]
+  products Product[]
+  orders   Order[]
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String
+  password  String
+  role      UserRole @default(CUSTOMER)
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  orders    Order[]
+  createdAt DateTime @default(now())
+
+  @@unique([email, tenantId])
+}
+
+model Product {
+  id           String         @id @default(cuid())
+  sanityId     String
+  tenantId     String
+  tenant       Tenant         @relation(fields: [tenantId], references: [id])
+  price        Int
+  stock        Int
+  active       Boolean        @default(true)
+  priceHistory PriceHistory[]
+  stockHistory StockHistory[]
+  orderItems   OrderItem[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  @@unique([sanityId, tenantId])
+}
+
+model PriceHistory {
+  id        String   @id @default(cuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  price     Int
+  changedBy String
+  createdAt DateTime @default(now())
+}
+
+model StockHistory {
+  id        String            @id @default(cuid())
+  productId String
+  product   Product           @relation(fields: [productId], references: [id])
+  delta     Int
+  reason    StockAdjustReason
+  orderId   String?
+  changedBy String?
+  createdAt DateTime          @default(now())
+}
+
+model Order {
+  id              String          @id @default(cuid())
+  tenantId        String
+  tenant          Tenant          @relation(fields: [tenantId], references: [id])
+  userId          String
+  user            User            @relation(fields: [userId], references: [id])
+  status          OrderStatus     @default(PENDING)
+  fulfillmentType FulfillmentType
+  deliveryAddress String?
+  note            String?
+  total           Int
+  items           OrderItem[]
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id])
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int
+  price     Int
+}
+
+enum UserRole {
+  CUSTOMER
+  ADMIN
+}
+
+enum FulfillmentType {
+  PICKUP
+  DELIVERY
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  READY
+  OUT_FOR_DELIVERY
+  COMPLETED
+  CANCELLED
+}
+
+enum StockAdjustReason {
+  SOLD
+  RESTOCK
+  CORRECTION
+}
