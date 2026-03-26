@@ -3,13 +3,63 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  /* Map CSS vars to Tailwind utilities */
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-primary-light: var(--color-primary-light);
+  --color-accent: var(--color-accent);
+  --color-background: var(--color-background);
+  --color-surface: var(--color-surface);
+  --color-text: var(--color-text);
+  --color-text-muted: var(--color-text-muted);
+  --color-border: var(--color-border);
 }
 
+/* ─── Flower shop theme ─────────────────────────────────── */
+[data-theme="flower-shop"] {
+  --color-primary: #2d5a3d;
+  --color-primary-dark: #1e3d29;
+  --color-primary-light: #f0f7f3;
+  --color-accent: #f472b6;
+  --color-background: #fff7f9;
+  --color-surface: #ffffff;
+  --color-text: #1f2937;
+  --color-text-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --radius-base: 0.5rem;
+}
+
+[data-theme="flower-shop"][data-dark="true"] {
+  --color-primary: #5a9e72;
+  --color-primary-dark: #3d7a55;
+  --color-primary-light: #1a2e22;
+  --color-accent: #f472b6;
+  --color-background: #0f1a13;
+  --color-surface: #1a2a1e;
+  --color-text: #f0f4f1;
+  --color-text-muted: #9ca3af;
+  --color-border: #2d3d32;
+  --radius-base: 0.5rem;
+}
+
+/* ─── Fishing shop theme ────────────────────────────────── */
+[data-theme="fishing-shop"] {
+  --color-primary: #1e3a5f;
+  --color-primary-dark: #122440;
+  --color-primary-light: #e8f0f8;
+  --color-accent: #f59e0b;
+  --color-background: #f0f4f8;
+  --color-surface: #ffffff;
+  --color-text: #1f2937;
+  --color-text-muted: #6b7280;
+  --color-border: #d1d9e0;
+  --radius-base: 0.25rem;
+}
+
+/* ─── Base ──────────────────────────────────────────────── */
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
-
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
+  background-color: var(--color-background);
+  color: var(--color-text);
 }

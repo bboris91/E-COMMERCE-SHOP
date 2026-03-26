@@ -6,11 +6,20 @@
   "exports": {
     ".": "./src/index.ts"
   },
+  "scripts": {
+    "seed": "tsx seed/seed.ts",
+    "seed:blog": "tsx seed/seed-blog.ts",
+    "seed:layout": "tsx seed/seed-layout.ts",
+    "seed:all": "tsx seed/seed.ts && tsx seed/seed-blog.ts && tsx seed/seed-layout.ts"
+  },
   "dependencies": {
+    "@sanity/client": "^7.20.0",
+    "dotenv": "^17.3.1",
     "sanity": "^3.88.0"
   },
   "devDependencies": {
     "@repo/config": "workspace:*",
+    "tsx": "^4.21.0",
     "typescript": "^5.8.3"
   }
 }

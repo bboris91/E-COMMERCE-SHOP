@@ -9,9 +9,13 @@
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
+    "@portabletext/react": "^6.0.3",
     "@react-router/node": "7.13.2",
     "@react-router/serve": "7.13.2",
+    "@sanity/client": "^7.20.0",
+    "groq": "^5.18.0",
     "isbot": "^5.1.36",
+    "lucide-react": "^1.6.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router": "7.13.2"
