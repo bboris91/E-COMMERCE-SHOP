@@ -8,6 +8,7 @@ import {
   useRouteLoaderData,
 } from 'react-router'
 import { useState, useEffect } from 'react'
+import { VisualEditing } from '@sanity/visual-editing/react-router'
 
 import type { Route } from './+types/root'
 import { sanityFetch } from './lib/sanity'
@@ -98,6 +99,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         />
         <ScrollRestoration />
         <Scripts />
+        {typeof document !== 'undefined' && window !== window.parent && <VisualEditing />}
       </body>
     </html>
   )

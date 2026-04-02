@@ -1,10 +1,10 @@
 type Props = {
-  images: string[]
+  images: string[] | null
   title: string
 }
 
 export function ProductImages({ images, title }: Props) {
-  if (images.length === 0) {
+  if (!images?.length) {
     return (
       <div
         className="w-full aspect-square rounded-(--radius-base) flex items-center justify-center"

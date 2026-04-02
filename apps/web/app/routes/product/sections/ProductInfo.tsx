@@ -17,12 +17,12 @@ export function ProductInfo({ title, category }: Props) {
       <p className="text-sm mb-8" style={{ color: 'var(--color-text-muted)' }}>
         Price available in store
       </p>
-      <button
+      {/* <button
         className="w-full py-3 rounded-(--radius-base) font-semibold transition-opacity hover:opacity-90"
         style={{ backgroundColor: 'var(--color-primary)', color: '#fff' }}
       >
         Add to cart
-      </button>
+      </button> */}
     </div>
   )
 }
