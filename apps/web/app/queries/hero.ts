@@ -4,7 +4,7 @@ export const heroQuery = defineQuery(`
   *[_type == "heroSection"][0] {
     heading,
     subheading,
-    "backgroundImage": backgroundImage.asset->url,
+    "backgroundImages": backgroundImages[].asset->url,
     primaryCta,
     secondaryCta
   }

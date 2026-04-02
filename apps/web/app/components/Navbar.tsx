@@ -30,9 +30,9 @@ export function Navbar({ shopName, logo, dark, onToggleDark }: Props) {
         <div className="flex items-center justify-between h-16 sm:h-20">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 shrink-0">
+          <Link to="/" className=" h-full flex items-center gap-2 shrink-0 p-1">
             {logo ? (
-              <img src={logo} alt={shopName} className="h-10 sm:h-16 w-auto" />
+              <img src={logo} alt={shopName} className="h-full w-auto rounded-xl" />
             ) : (
               <span className="text-xl font-bold" style={{ color: 'var(--color-primary)' }}>
                 {shopName}

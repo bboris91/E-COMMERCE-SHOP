@@ -135,23 +135,25 @@ const products = [
 ]
 
 const aboutPage = {
-  _id: 'page-about',
-  _type: 'page',
-  title: 'O nama',
-  slug: { _type: 'slug', current: 'o-nama' },
-  body: [
-    { ...block('Naša priča'), _type: 'block', style: 'h2' },
-    block('Flora Bianca je osnovana 2020. godine kao mala porodična cvećara s velikim snom: doneti lepotu prirode u svaki dom i svečanost.'),
-    block('Ono što je počelo kao skromna radnja procvetalo je u omiljenu lokalnu cvećaru koja opslužuje hiljade kupaca koji nam veruju da isporučimo njihove najdublje poruke putem cveća.'),
-    block('Danas radimo direktno s lokalnim uzgajivačima i održivim farmama kako bismo nabavili najsvežije cvetove. Svaki aranžman je ručno izrađen od strane naših vештих cvećara koji svaku narudžbinu tretiraju kao jedinstveno umetničko delo.'),
-    { ...block('Naše vrednosti'), _type: 'block', style: 'h2' },
-    block('Strast prema cveću – Ulažemo srce u svaki aranžman, osiguravajući da svaki cvet priča priču.'),
-    block('Kupac na prvom mestu – Vaše zadovoljstvo je naš prioritet. Ovde smo da svaki trenutak učinimo posebnim.'),
-    block('Garantovani kvalitet – Samo najfiniji, najsvežiji cvetovi ulaze u naše bukete.'),
-    block('Ekološki pristup – Održive prakse i lokalna nabavka za zeleniju budućnost.'),
-    { ...block('Naša misija'), _type: 'block', style: 'h2' },
-    block('Stvaranje smislenih veza i proslava posebnih životnih trenutaka kroz izuzetnu cvetnu umetnost. Verujemo da svaki cvet ima svoju priču, a svaki aranžman je prilika za širenje radosti, ljubavi i lepote.'),
+  _id: 'aboutPage',
+  _type: 'aboutPage',
+  heading: 'O nama',
+  subheading: 'Donosimo lepotu i radost u vaš život kroz umetnost cveća',
+  storyHeading: 'Naša priča',
+  storyParagraphs: [
+    'Flora Bianca je osnovana 2020. godine kao mala porodična cvećara s velikim snom: doneti lepotu prirode u svaki dom i svečanost.',
+    'Ono što je počelo kao skromna radnja procvetalo je u omiljenu lokalnu cvećaru koja opslužuje hiljade kupaca koji nam veruju da isporučimo njihove najdublje poruke putem cveća.',
+    'Danas radimo direktno s lokalnim uzgajivačima i održivim farmama kako bismo nabavili najsvežije cvetove. Svaki aranžman je ručno izrađen od strane naših veštih cvećara koji svaku narudžbinu tretiraju kao jedinstveno umetničko delo.',
   ],
+  valuesHeading: 'Naše vrednosti',
+  values: [
+    { _key: 'val-1', icon: 'Heart', title: 'Strast prema cveću', description: 'Ulažemo srce u svaki aranžman, osiguravajući da svaki cvet priča priču.' },
+    { _key: 'val-2', icon: 'Users', title: 'Kupac na prvom mestu', description: 'Vaše zadovoljstvo je naš prioritet. Ovde smo da svaki trenutak učinimo posebnim.' },
+    { _key: 'val-3', icon: 'Award', title: 'Garantovani kvalitet', description: 'Samo najfiniji, najsvežiji cvetovi ulaze u naše bukete.' },
+    { _key: 'val-4', icon: 'Leaf', title: 'Ekološki pristup', description: 'Održive prakse i lokalna nabavka za zeleniju budućnost.' },
+  ],
+  missionHeading: 'Naša misija',
+  missionText: 'Stvaranje smislenih veza i proslava posebnih životnih trenutaka kroz izuzetnu cvetnu umetnost. Verujemo da svaki cvet ima svoju priču, a svaki aranžman je prilika za širenje radosti, ljubavi i lepote.',
   seo: {
     title: 'O nama – Flora Bianca',
     description: 'Saznajte više o Flora Bianca – vašoj omiljenoj cvećari u Beogradu od 2020. godine.',

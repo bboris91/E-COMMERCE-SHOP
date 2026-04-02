@@ -14,33 +14,36 @@
   --color-text: var(--color-text);
   --color-text-muted: var(--color-text-muted);
   --color-border: var(--color-border);
+  --color-footer: var(--color-footer);
 }
 
 /* ─── Flower shop theme ─────────────────────────────────── */
 [data-theme="flower-shop"] {
   --color-primary: #2d5a3d;
-  --color-primary-dark: #1e3d29;
-  --color-primary-light: #f0f7f3;
-  --color-accent: #f472b6;
-  --color-background: #fff7f9;
+  --color-primary-dark: #244831;
+  --color-primary-light: #f0f5f2;
+  --color-accent: #ee7891;
+  --color-background: #fffbfc;
   --color-surface: #ffffff;
-  --color-text: #1f2937;
-  --color-text-muted: #6b7280;
-  --color-border: #e5e7eb;
-  --radius-base: 0.5rem;
+  --color-text: #1f2d23;
+  --color-text-muted: #6b7c71;
+  --color-border: rgba(45, 90, 61, 0.1);
+  --radius-base: 0.625rem;
+  --color-footer: var(--color-primary);
 }
 
 [data-theme="flower-shop"][data-dark="true"] {
-  --color-primary: #5a9e72;
+  --color-primary: #52976b;
   --color-primary-dark: #3d7a55;
-  --color-primary-light: #1a2e22;
-  --color-accent: #f472b6;
-  --color-background: #0f1a13;
+  --color-primary-light: #243228;
+  --color-accent: #ee7891;
+  --color-background: #190f1a;
   --color-surface: #1a2a1e;
-  --color-text: #f0f4f1;
-  --color-text-muted: #9ca3af;
-  --color-border: #2d3d32;
-  --radius-base: 0.5rem;
+  --color-text: #f0f5f2;
+  --color-text-muted: #a9cbb5;
+  --color-border: rgba(82, 151, 107, 0.2);
+  --radius-base: 0.625rem;
+  --color-footer: var(--color-surface);
 }
 
 /* ─── Fishing shop theme ────────────────────────────────── */

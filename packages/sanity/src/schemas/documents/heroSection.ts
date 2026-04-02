@@ -18,10 +18,11 @@ export const heroSection = defineType({
       rows: 2,
     }),
     defineField({
-      name: 'backgroundImage',
-      title: 'Background image',
-      type: 'image',
-      options: { hotspot: true },
+      name: 'backgroundImages',
+      title: 'Background images',
+      description: 'Add multiple images to enable a slideshow. At least one recommended.',
+      type: 'array',
+      of: [{ type: 'image', options: { hotspot: true } }],
     }),
     defineField({
       name: 'primaryCta',
@@ -35,6 +36,6 @@ export const heroSection = defineType({
     }),
   ],
   preview: {
-    select: { title: 'heading', media: 'backgroundImage' },
+    select: { title: 'heading', media: 'backgroundImages.0' },
   },
 })

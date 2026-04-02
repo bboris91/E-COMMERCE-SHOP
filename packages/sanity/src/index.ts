@@ -1,4 +1,5 @@
 // Documents
+export { aboutPage } from './schemas/documents/aboutPage'
 export { product } from './schemas/documents/product'
 export { category } from './schemas/documents/category'
 export { siteSettings } from './schemas/documents/siteSettings'
@@ -15,6 +16,7 @@ export { cta } from './schemas/objects/cta'
 export { richText } from './schemas/objects/richText'
 
 // All schema types — pass this to the Sanity config
+import { aboutPage } from './schemas/documents/aboutPage'
 import { product } from './schemas/documents/product'
 import { category } from './schemas/documents/category'
 import { siteSettings } from './schemas/documents/siteSettings'
@@ -34,6 +36,7 @@ export const schemaTypes = [
   cta,
   richText,
   // Documents
+  aboutPage,
   category,
   product,
   siteSettings,
