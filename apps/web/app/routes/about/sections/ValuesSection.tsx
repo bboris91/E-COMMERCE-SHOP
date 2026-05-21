@@ -1,7 +1,7 @@
-import { Heart, Users, Award, Leaf, Star, Smile, Globe, Zap, type LucideIcon } from 'lucide-react'
+import { Heart, Users, Award, Leaf, Star, Smile, Globe, Zap, UserStar, Gem, type LucideIcon } from 'lucide-react'
 
 const iconMap: Record<string, LucideIcon> = {
-  Heart, Users, Award, Leaf, Star, Smile, Globe, Zap,
+  Heart, Users, Award, Leaf, Star, Smile, Globe, Zap, UserStar,Gem
 }
 
 type Value = {
