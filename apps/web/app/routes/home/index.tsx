@@ -2,8 +2,10 @@ import type { Route } from './+types/index'
 import { sanityFetch } from '../../lib/sanity'
 import { heroQuery } from '../../queries/hero'
 import { productsQuery } from '../../queries/products'
+import { aboutPageQuery } from '../../queries/about'
 import { HeroSection } from './sections/HeroSection'
 import { ProductsSection } from './sections/ProductsSection'
+import { AboutTeaser } from './sections/AboutTeaser'
 
 type HeroData = {
   heading: string
@@ -21,28 +23,38 @@ type ProductCard = {
   category: { title: string; slug: string } | null
 }
 
+type AboutTeaserData = {
+  heading: string
+  subheading: string | null
+  storyHeading: string | null
+  storyParagraphs: string[] | null
+  storyImage: string | null
+}
+
 export async function loader() {
-  const [hero, products] = await Promise.all([
+  const [hero, products, about] = await Promise.all([
     sanityFetch<HeroData>(heroQuery),
     sanityFetch<ProductCard[]>(productsQuery),
+    sanityFetch<AboutTeaserData>(aboutPageQuery),
   ])
-  return { hero, products }
+  return { hero, products, about }
 }
 
 export function meta() {
   return [
     { title: 'Flora Bianca' },
-    { name: 'description', content: 'Fresh flowers for every occasion.' },
+    { name: 'description', content: 'Sveže cveće za svaku priliku.' },
   ]
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-  const { hero, products } = loaderData
+  const { hero, products, about } = loaderData
 
   return (
     <main>
       {hero && <HeroSection hero={hero} />}
       <ProductsSection products={products} />
+      {about && <AboutTeaser about={about} />}
     </main>
   )
 }

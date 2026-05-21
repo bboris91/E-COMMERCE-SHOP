@@ -54,18 +54,27 @@ export const structure: StructureResolver = (S) =>
             .items([
               // Hero — singleton
               S.listItem()
-                .title('Hero section')
+                .title('Home page')
                 .child(
                   S.editor()
-                    .title('Hero section')
+                    .title('Home page')
                     .schemaType('heroSection')
                     .documentId('heroSection')
                 ),
-              // Generic pages list
+              // About — singleton
               S.listItem()
-                .title('Custom pages')
-                .schemaType('page')
-                .child(S.documentTypeList('page').title('Custom pages')),
+                .title('About page')
+                .child(
+                  S.editor()
+                    .title('About page')
+                    .schemaType('aboutPage')
+                    .documentId('aboutPage')
+                ),
+              // Generic pages list
+              // S.listItem()
+              //   .title('Custom pages')
+              //   .schemaType('page')
+              //   .child(S.documentTypeList('page').title('Custom pages')),
             ])
         ),
 
