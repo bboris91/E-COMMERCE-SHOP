@@ -3,7 +3,16 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".react-router/**", "build/**"]
+      "outputs": ["dist/**", ".react-router/**", "build/**"],
+      "env": [
+        "SANITY_STUDIO_PROJECT_ID",
+        "SANITY_STUDIO_DATASET",
+        "SANITY_STUDIO_PREVIEW_URL",
+        "VITE_SANITY_PROJECT_ID",
+        "VITE_SANITY_DATASET",
+        "VITE_SANITY_STUDIO_URL",
+        "VITE_API_URL"
+      ]
     },
     "dev": {
       "cache": false,
