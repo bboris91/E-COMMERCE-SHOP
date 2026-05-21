@@ -60,6 +60,12 @@
   --radius-base: 0.25rem;
 }
 
+/* ─── Swiper pagination above hero overlay ─────────────── */
+.swiper-pagination {
+  z-index: 30 !important;
+  --swiper-pagination-color:var(--color-accent);
+}
+
 /* ─── Base ──────────────────────────────────────────────── */
 html,
 body {

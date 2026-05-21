@@ -2,8 +2,8 @@
   "name": "e-commerce-shop",
   "private": true,
   "scripts": {
-    "dev": "turbo dev",
-    "build": "turbo build",
+    "dev": "turbo dev --filter=!@repo/api --filter=!@repo/db",
+    "build": "turbo build --filter=!@repo/api --filter=!@repo/db",
     "lint": "turbo lint",
     "typecheck": "turbo typecheck"
   },

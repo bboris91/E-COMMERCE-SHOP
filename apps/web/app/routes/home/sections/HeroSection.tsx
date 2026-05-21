@@ -1,8 +1,7 @@
 import { Link } from 'react-router'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, EffectFade } from 'swiper/modules'
-import 'swiper/css'
-import 'swiper/css/effect-fade'
+import { Autoplay, EffectFade, Pagination } from 'swiper/modules'
+import 'swiper/swiper-bundle.css'
 
 type HeroData = {
   heading: string
@@ -23,12 +22,13 @@ export function HeroSection({ hero }: { hero: HeroData }) {
         <>
           <div className="absolute inset-0 z-0">
             <Swiper
-              modules={[Autoplay, EffectFade]}
+              modules={[Autoplay, EffectFade, Pagination]}
               effect="fade"
-              autoplay={{ delay: 5000, disableOnInteraction: false }}
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
               loop={images.length > 1}
               allowTouchMove={false}
               className="w-full h-full"
+              pagination={{ clickable: true }}
             >
               {images.map((url, i) => (
                 <SwiperSlide key={i}>
