@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+import { useTranslation } from 'react-i18next'
 
 type ProductCard = {
   _id: string
@@ -9,8 +10,10 @@ type ProductCard = {
 }
 
 export function ProductGrid({ products }: { products: ProductCard[] }) {
+  const { t } = useTranslation()
+
   if (products.length === 0) {
-    return <p style={{ color: 'var(--color-text-muted)' }}>No products found.</p>
+    return <p style={{ color: 'var(--color-text-muted)' }}>{t('products.noProducts')}</p>
   }
 
   return (
@@ -33,7 +36,7 @@ export function ProductGrid({ products }: { products: ProductCard[] }) {
               className="w-full aspect-square flex items-center justify-center"
               style={{ backgroundColor: 'var(--color-primary-light)' }}
             >
-              <span style={{ color: 'var(--color-text-muted)' }}>No image</span>
+              <span style={{ color: 'var(--color-text-muted)' }}>{t('products.noImage')}</span>
             </div>
           )}
           <div className="p-4">

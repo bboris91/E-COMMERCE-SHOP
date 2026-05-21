@@ -1,16 +1,20 @@
+import { useTranslation } from 'react-i18next'
+
 type Props = {
   images: string[] | null
   title: string
 }
 
 export function ProductImages({ images, title }: Props) {
+  const { t } = useTranslation()
+
   if (!images?.length) {
     return (
       <div
         className="w-full aspect-square rounded-(--radius-base) flex items-center justify-center"
         style={{ backgroundColor: 'var(--color-primary-light)' }}
       >
-        <span style={{ color: 'var(--color-text-muted)' }}>No image</span>
+        <span style={{ color: 'var(--color-text-muted)' }}>{t('products.noImage')}</span>
       </div>
     )
   }

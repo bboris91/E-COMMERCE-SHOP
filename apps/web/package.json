@@ -15,10 +15,13 @@
     "@sanity/client": "^7.20.0",
     "@sanity/visual-editing": "^5.3.3",
     "groq": "^5.18.0",
+    "i18next": "^26.2.0",
+    "i18next-browser-languagedetector": "^8.2.1",
     "isbot": "^5.1.36",
     "lucide-react": "^1.6.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
+    "react-i18next": "^17.0.8",
     "react-router": "7.13.2",
     "swiper": "^12.1.3"
   },

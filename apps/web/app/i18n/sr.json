@@ -1,0 +1,71 @@
+{
+  "nav": {
+    "home": "Početna",
+    "products": "Proizvodi",
+    "blog": "Blog",
+    "about": "O nama",
+    "toggleDark": "Uključi/isključi tamni režim",
+    "toggleMenu": "Otvori/zatvori meni"
+  },
+  "footer": {
+    "quickLinks": "Brzi pristup",
+    "contact": "Kontakt",
+    "openingHours": "Radno vreme",
+    "allRightsReserved": "Sva prava zadržana."
+  },
+  "error": {
+    "oops": "Ups!",
+    "unexpected": "Došlo je do neočekivane greške.",
+    "notFound": "404",
+    "error": "Greška",
+    "pageNotFound": "Tražena stranica nije pronađena."
+  },
+  "products": {
+    "title": "Proizvodi",
+    "metaTitle": "Proizvodi — Flora Bianca",
+    "all": "Sve",
+    "noImage": "Bez slike",
+    "noProducts": "Nema proizvoda.",
+    "noProductsHome": "Još uvek nema proizvoda — dodaj neke u Sanity Studio.",
+    "ourProducts": "Naši proizvodi",
+    "priceInStore": "Cena dostupna u prodavnici"
+  },
+  "blog": {
+    "title": "Blog",
+    "metaTitle": "Blog – Flora Bianca",
+    "subtitle": "Saveti, inspiracija i priče iz sveta cveća.",
+    "metaDescription": "Saveti, inspiracija i priče iz sveta cveća.",
+    "featured": "Istaknuto",
+    "readMore": "Pročitajte više",
+    "noPosts": "Nema objava. Dodajte ih u Sanity Studio.",
+    "backToBlog": "← Nazad na blog"
+  },
+  "cart": {
+    "title": "Korpa",
+    "comingSoon": "Korpa uskoro."
+  },
+  "checkout": {
+    "title": "Plaćanje",
+    "comingSoon": "Plaćanje uskoro."
+  },
+  "login": {
+    "title": "Prijava",
+    "comingSoon": "Forma za prijavu uskoro."
+  },
+  "register": {
+    "title": "Registracija",
+    "comingSoon": "Forma za registraciju uskoro."
+  },
+  "order": {
+    "title": "Porudžbina",
+    "comingSoon": "Detalji porudžbine uskoro."
+  },
+  "about": {
+    "metaTitle": "O nama – Flora Bianca",
+    "metaDescription": "Saznajte više o Flora Bianca."
+  },
+  "home": {
+    "metaTitle": "Flora Bianca",
+    "metaDescription": "Sveže cveće za svaku priliku."
+  }
+}

@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   title: string
@@ -16,6 +17,8 @@ function formatDate(iso: string) {
 }
 
 export function PostHeader({ title, publishedAt, mainImage, mainImageAlt, author, categories }: Props) {
+  const { t } = useTranslation()
+
   return (
     <>
       <Link
@@ -23,7 +26,7 @@ export function PostHeader({ title, publishedAt, mainImage, mainImageAlt, author
         className="inline-flex items-center gap-1 text-sm mb-8 transition-opacity hover:opacity-70"
         style={{ color: 'var(--color-text-muted)' }}
       >
-        ← Nazad na blog
+        {t('blog.backToBlog')}
       </Link>
 
       {categories && categories.length > 0 && (
@@ -56,7 +59,7 @@ export function PostHeader({ title, publishedAt, mainImage, mainImageAlt, author
         <img
           src={mainImage}
           alt={mainImageAlt ?? title}
-          className="w-full rounded-(--radius-base) object-cover mb-10 max-h-[480px]"
+          className="w-full rounded-(--radius-base) object-cover mb-10 max-h-120"
         />
       )}
     </>

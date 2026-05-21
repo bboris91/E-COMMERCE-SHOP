@@ -9,6 +9,8 @@ import {
 } from 'react-router'
 import { useState, useEffect } from 'react'
 import { VisualEditing } from '@sanity/visual-editing/react-router'
+import { I18nextProvider } from 'react-i18next'
+import i18n from './i18n/i18n'
 
 import type { Route } from './+types/root'
 import { sanityFetch } from './lib/sanity'
@@ -79,27 +81,29 @@ export function Layout({ children }: { children: React.ReactNode }) {
         )}
       </head>
       <body>
-        <Navbar
-          shopName={data?.nav?.shopName ?? 'Shop'}
-          logo={data?.nav?.logo ?? null}
-          dark={dark}
-          onToggleDark={toggleDark}
-        />
-        {children}
-        <Footer
-          shopName={data?.nav?.shopName ?? 'Shop'}
-          logo={data?.nav?.logo ?? null}
-          tagline={data?.footer?.tagline ?? null}
-          contactEmail={data?.footer?.contactEmail ?? null}
-          contactPhone={data?.footer?.contactPhone ?? null}
-          address={data?.footer?.address ?? null}
-          socialLinks={data?.footer?.socialLinks ?? null}
-          openingHours={data?.footer?.openingHours ?? null}
-          footerText={data?.footer?.copyrightText ?? null}
-        />
-        <ScrollRestoration />
-        <Scripts />
-        {typeof document !== 'undefined' && window !== window.parent && <VisualEditing />}
+        <I18nextProvider i18n={i18n}>
+          <Navbar
+            shopName={data?.nav?.shopName ?? 'Shop'}
+            logo={data?.nav?.logo ?? null}
+            dark={dark}
+            onToggleDark={toggleDark}
+          />
+          {children}
+          <Footer
+            shopName={data?.nav?.shopName ?? 'Shop'}
+            logo={data?.nav?.logo ?? null}
+            tagline={data?.footer?.tagline ?? null}
+            contactEmail={data?.footer?.contactEmail ?? null}
+            contactPhone={data?.footer?.contactPhone ?? null}
+            address={data?.footer?.address ?? null}
+            socialLinks={data?.footer?.socialLinks ?? null}
+            openingHours={data?.footer?.openingHours ?? null}
+            footerText={data?.footer?.copyrightText ?? null}
+          />
+          <ScrollRestoration />
+          <Scripts />
+          {typeof document !== 'undefined' && window !== window.parent && <VisualEditing />}
+        </I18nextProvider>
       </body>
     </html>
   )
@@ -110,15 +114,16 @@ export default function App() {
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = 'Oops!'
-  let details = 'An unexpected error occurred.'
+  const { t } = i18n
+  let message = t('error.oops')
+  let details = t('error.unexpected')
   let stack: string | undefined
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? '404' : 'Error'
+    message = error.status === 404 ? t('error.notFound') : t('error.error')
     details =
       error.status === 404
-        ? 'The requested page could not be found.'
+        ? t('error.pageNotFound')
         : error.statusText || details
   } else if (import.meta.env.DEV && error instanceof Error) {
     details = error.message

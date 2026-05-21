@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router'
 import { Menu, X, Sun, Moon } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   shopName: string
@@ -9,17 +10,18 @@ type Props = {
   onToggleDark: () => void
 }
 
-const navLinks = [
-  { name: 'Početna', path: '/' },
-  { name: 'Proizvodi', path: '/products' },
-  { name: 'Blog', path: '/blog' },
-  { name: 'O nama', path: '/o-nama' },
-]
-
 export function Navbar({ shopName, logo, dark, onToggleDark }: Props) {
+  const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const location = useLocation()
   const isActive = (path: string) => location.pathname === path
+
+  const navLinks = [
+    { name: t('nav.home'), path: '/' },
+    { name: t('nav.products'), path: '/products' },
+    { name: t('nav.blog'), path: '/blog' },
+    { name: t('nav.about'), path: '/o-nama' },
+  ]
 
   return (
     <nav
@@ -56,21 +58,19 @@ export function Navbar({ shopName, logo, dark, onToggleDark }: Props) {
 
           {/* Actions */}
           <div className="flex items-center gap-2">
-            {/* Dark mode toggle */}
             <button
               onClick={onToggleDark}
-              aria-label="Toggle dark mode"
+              aria-label={t('nav.toggleDark')}
               className="p-2 rounded-(--radius-base) transition-opacity hover:opacity-70"
               style={{ color: 'var(--color-text-muted)' }}
             >
               {dark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
 
-            {/* Mobile menu button */}
             <button
               className="md:hidden p-2"
               onClick={() => setOpen(!open)}
-              aria-label="Toggle menu"
+              aria-label={t('nav.toggleMenu')}
               style={{ color: 'var(--color-text)' }}
             >
               {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

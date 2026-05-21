@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+import { useTranslation } from 'react-i18next'
 
 type PostCard = {
   _id: string
@@ -20,6 +21,8 @@ function formatDate(iso: string) {
 }
 
 export function FeaturedPost({ post }: { post: PostCard }) {
+  const { t } = useTranslation()
+
   return (
     <div className="mb-14">
       <Link
@@ -41,7 +44,7 @@ export function FeaturedPost({ post }: { post: PostCard }) {
             className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold"
             style={{ backgroundColor: 'var(--color-primary)', color: '#fff' }}
           >
-            Istaknuto
+            {t('blog.featured')}
           </span>
         </div>
         <div className="p-8 lg:p-10 flex flex-col justify-center">
@@ -66,7 +69,7 @@ export function FeaturedPost({ post }: { post: PostCard }) {
             className="mt-6 self-start px-5 py-2.5 rounded-(--radius-base) text-sm font-semibold transition-opacity hover:opacity-90"
             style={{ backgroundColor: 'var(--color-primary)', color: '#fff' }}
           >
-            Pročitajte više
+            {t('blog.readMore')}
           </span>
         </div>
       </Link>

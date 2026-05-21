@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+import { useTranslation } from 'react-i18next'
 
 type PostCard = {
   _id: string
@@ -19,8 +20,10 @@ function formatDate(iso: string) {
 }
 
 export function PostGrid({ posts }: { posts: PostCard[] }) {
+  const { t } = useTranslation()
+
   if (posts.length === 0) {
-    return <p style={{ color: 'var(--color-text-muted)' }}>Nema objava. Dodajte ih u Sanity Studio.</p>
+    return <p style={{ color: 'var(--color-text-muted)' }}>{t('blog.noPosts')}</p>
   }
 
   return (

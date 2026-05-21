@@ -4,6 +4,7 @@ import { productsQuery } from '../../queries/products'
 import { categoriesQuery } from '../../queries/categories'
 import { CategoryFilter } from './sections/CategoryFilter'
 import { ProductGrid } from './sections/ProductGrid'
+import { useTranslation } from 'react-i18next'
 
 type ProductCard = {
   _id: string
@@ -36,16 +37,17 @@ export async function loader({ request }: Route.LoaderArgs) {
 }
 
 export function meta() {
-  return [{ title: 'Products — Flora Bianca' }]
+  return [{ title: 'Proizvodi — Flora Bianca' }]
 }
 
 export default function Products({ loaderData }: Route.ComponentProps) {
   const { products, categories, activeCategory } = loaderData
+  const { t } = useTranslation()
 
   return (
     <main className="max-w-7xl mx-auto px-4 py-16">
       <h1 className="text-3xl font-bold mb-8" style={{ color: 'var(--color-text)' }}>
-        Products
+        {t('products.title')}
       </h1>
       <CategoryFilter categories={categories} activeCategory={activeCategory} />
       <ProductGrid products={products} />

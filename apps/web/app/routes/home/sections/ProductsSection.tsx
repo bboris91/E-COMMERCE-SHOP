@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+import { useTranslation } from 'react-i18next'
 
 type ProductCard = {
   _id: string
@@ -9,14 +10,16 @@ type ProductCard = {
 }
 
 export function ProductsSection({ products }: { products: ProductCard[] }) {
+  const { t } = useTranslation()
+
   return (
     <section className="max-w-7xl mx-auto px-4 py-16">
       <h2 className="text-2xl font-bold mb-8" style={{ color: 'var(--color-text)' }}>
-        Our Products
+        {t('products.ourProducts')}
       </h2>
       {products.length === 0 ? (
         <p style={{ color: 'var(--color-text-muted)' }}>
-          No products yet — add some in Sanity Studio.
+          {t('products.noProductsHome')}
         </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -38,7 +41,7 @@ export function ProductsSection({ products }: { products: ProductCard[] }) {
                   className="w-full aspect-square flex items-center justify-center"
                   style={{ backgroundColor: 'var(--color-primary-light)' }}
                 >
-                  <span style={{ color: 'var(--color-text-muted)' }}>No image</span>
+                  <span style={{ color: 'var(--color-text-muted)' }}>{t('products.noImage')}</span>
                 </div>
               )}
               <div className="p-4">

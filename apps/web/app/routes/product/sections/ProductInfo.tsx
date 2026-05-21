@@ -1,9 +1,13 @@
+import { useTranslation } from 'react-i18next'
+
 type Props = {
   title: string
   category: { title: string; slug: string } | null
 }
 
 export function ProductInfo({ title, category }: Props) {
+  const { t } = useTranslation()
+
   return (
     <div>
       {category && (
@@ -15,14 +19,8 @@ export function ProductInfo({ title, category }: Props) {
         {title}
       </h1>
       <p className="text-sm mb-8" style={{ color: 'var(--color-text-muted)' }}>
-        Price available in store
+        {t('products.priceInStore')}
       </p>
-      {/* <button
-        className="w-full py-3 rounded-(--radius-base) font-semibold transition-opacity hover:opacity-90"
-        style={{ backgroundColor: 'var(--color-primary)', color: '#fff' }}
-      >
-        Add to cart
-      </button> */}
     </div>
   )
 }

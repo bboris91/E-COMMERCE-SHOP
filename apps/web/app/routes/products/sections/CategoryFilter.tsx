@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+import { useTranslation } from 'react-i18next'
 
 type Category = {
   _id: string
@@ -7,6 +8,8 @@ type Category = {
 }
 
 export function CategoryFilter({ categories, activeCategory }: { categories: Category[]; activeCategory: string | null }) {
+  const { t } = useTranslation()
+
   return (
     <div className="flex gap-2 flex-wrap mb-10">
       <Link
@@ -18,7 +21,7 @@ export function CategoryFilter({ categories, activeCategory }: { categories: Cat
             : { backgroundColor: 'var(--color-surface)', color: 'var(--color-text)', borderColor: 'var(--color-border)' }
         }
       >
-        All
+        {t('products.all')}
       </Link>
       {categories.map((cat) => (
         <Link

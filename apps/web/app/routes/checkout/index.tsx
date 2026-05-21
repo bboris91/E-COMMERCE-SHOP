@@ -1,10 +1,13 @@
+import { useTranslation } from 'react-i18next'
+
 export default function Checkout() {
+  const { t } = useTranslation()
   return (
     <main className="max-w-3xl mx-auto px-4 py-16">
       <h1 className="text-3xl font-bold mb-8" style={{ color: 'var(--color-text)' }}>
-        Checkout
+        {t('checkout.title')}
       </h1>
-      <p style={{ color: 'var(--color-text-muted)' }}>Checkout coming soon.</p>
+      <p style={{ color: 'var(--color-text-muted)' }}>{t('checkout.comingSoon')}</p>
     </main>
   )
 }

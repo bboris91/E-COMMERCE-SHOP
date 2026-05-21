@@ -3,6 +3,7 @@ import { sanityFetch } from '../../lib/sanity'
 import { postsQuery } from '../../queries/posts'
 import { FeaturedPost } from './sections/FeaturedPost'
 import { PostGrid } from './sections/PostGrid'
+import { useTranslation } from 'react-i18next'
 
 type PostCard = {
   _id: string
@@ -25,12 +26,13 @@ export async function loader() {
 export function meta() {
   return [
     { title: 'Blog – Flora Bianca' },
-    { name: 'description', content: 'Savjeti, inspiracija i priče iz svijeta cvijeća.' },
+    { name: 'description', content: 'Saveti, inspiracija i priče iz sveta cveća.' },
   ]
 }
 
 export default function Blog({ loaderData }: Route.ComponentProps) {
   const { posts } = loaderData
+  const { t } = useTranslation()
   const featured = posts.find((p) => p.featured)
   const rest = posts.filter((p) => !p.featured)
 
@@ -38,10 +40,10 @@ export default function Blog({ loaderData }: Route.ComponentProps) {
     <main className="max-w-7xl mx-auto px-4 py-16">
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-3" style={{ color: 'var(--color-primary)' }}>
-          Blog
+          {t('blog.title')}
         </h1>
         <p className="text-lg" style={{ color: 'var(--color-text-muted)' }}>
-          Savjeti, inspiracija i priče iz svijeta cvijeća
+          {t('blog.subtitle')}
         </p>
       </div>
       {featured && <FeaturedPost post={featured} />}
