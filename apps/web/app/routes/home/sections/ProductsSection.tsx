@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
+import { ArrowRight } from 'lucide-react'
 
 type ProductCard = {
   _id: string
@@ -11,6 +12,8 @@ type ProductCard = {
 
 export function ProductsSection({ products }: { products: ProductCard[] }) {
   const { t } = useTranslation()
+  const displayed = products.slice(0, 7)
+  const hasMore = products.length >= 7
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-16">
@@ -23,7 +26,7 @@ export function ProductsSection({ products }: { products: ProductCard[] }) {
         </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {products.map((product) => (
+          {displayed.map((product) => (
             <Link
               key={product._id}
               to={`/products/${product.slug}`}
@@ -59,6 +62,24 @@ export function ProductsSection({ products }: { products: ProductCard[] }) {
               </div>
             </Link>
           ))}
+
+          {hasMore && (
+            <Link
+              to="/products"
+              className="group rounded-(--radius-base) overflow-hidden border transition-shadow hover:shadow-lg flex flex-col items-center justify-center gap-3 min-h-48"
+              style={{ backgroundColor: 'var(--color-primary-light)', borderColor: 'var(--color-border)' }}
+            >
+              <div
+                className="w-12 h-12 rounded-full flex items-center justify-center transition-transform group-hover:scale-110"
+                style={{ backgroundColor: 'var(--color-primary)' }}
+              >
+                <ArrowRight className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-sm font-semibold text-center px-4" style={{ color: 'var(--color-primary)' }}>
+                {t('products.viewAll')}
+              </span>
+            </Link>
+          )}
         </div>
       )}
     </section>

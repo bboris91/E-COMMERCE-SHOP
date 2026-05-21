@@ -28,7 +28,8 @@
     "noProducts": "Nema proizvoda.",
     "noProductsHome": "Još uvek nema proizvoda — dodaj neke u Sanity Studio.",
     "ourProducts": "Naši proizvodi",
-    "priceInStore": "Cena dostupna u prodavnici"
+    "priceInStore": "Cena dostupna u prodavnici",
+    "viewAll": "Pogledajte sve proizvode"
   },
   "blog": {
     "title": "Blog",
