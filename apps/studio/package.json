@@ -10,8 +10,11 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@portabletext/block-tools": "^5.1.2",
+    "@portabletext/editor": "^7.0.0",
     "@repo/sanity": "workspace:*",
     "@sanity/presentation": "^2.0.0",
+    "@sanity/presentation-comlink": "^2.0.1",
     "@sanity/vision": "^3.88.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
