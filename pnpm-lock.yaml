@@ -205,6 +205,9 @@ importers:
       groq:
         specifier: ^5.18.0
         version: 5.18.0
+      gsap:
+        specifier: ^3.15.0
+        version: 3.15.0
       i18next:
         specifier: ^26.2.0
         version: 26.2.0(typescript@5.9.3)
@@ -5084,6 +5087,9 @@ packages:
   groq@5.18.0:
     resolution: {integrity: sha512-TqdRsnfKU/F4CDzdp0pICQoPkIJCBDHELlKyIhdZ2heZAnv+Vadg7iIkOUCwykvfxDt6dhbP5AyLx5zunJ3c2Q==}
     engines: {node: '>=20.19 <22 || >=22.12'}
+
+  gsap@3.15.0:
+    resolution: {integrity: sha512-dMW4CWBTUK1AEEDeZc1g4xpPGIrSf9fJF960qbTZmN/QwZIWY5wgliS6JWl9/25fpTGJrMRtSjGtOmPnfjZB+A==}
 
   gunzip-maybe@1.4.2:
     resolution: {integrity: sha512-4haO1M4mLO91PW57BMsDFf75UmwoRX0GkdD+Faw+Lr+r/OZrOCS0pIBwOL1xCKQqnQzbNFGgK2V2CpBUPeFNTw==}
@@ -14120,6 +14126,8 @@ snapshots:
   groq@3.99.0: {}
 
   groq@5.18.0: {}
+
+  gsap@3.15.0: {}
 
   gunzip-maybe@1.4.2:
     dependencies:

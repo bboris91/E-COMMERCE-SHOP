@@ -15,6 +15,7 @@
     "@sanity/client": "^7.20.0",
     "@sanity/visual-editing": "^5.3.3",
     "groq": "^5.18.0",
+    "gsap": "^3.15.0",
     "i18next": "^26.2.0",
     "i18next-browser-languagedetector": "^8.2.1",
     "isbot": "^5.1.36",
