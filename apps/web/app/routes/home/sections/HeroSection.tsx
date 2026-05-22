@@ -1,6 +1,5 @@
 import { Link } from 'react-router'
 import { useEffect, useRef, useState } from 'react'
-import gsap from 'gsap'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, EffectFade, Pagination } from 'swiper/modules'
 import 'swiper/swiper-bundle.css'
@@ -63,7 +62,8 @@ export function HeroSection({ hero }: { hero: HeroData }) {
     return 'hidden'
   }
 
-  function applyTransforms() {
+  async function applyTransforms() {
+    const { gsap } = await import('gsap')
     slidesRef.current.forEach((el, i) => {
       if (!el) return
       const pos = getPosition(i)
