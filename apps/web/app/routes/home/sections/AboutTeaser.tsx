@@ -18,9 +18,9 @@ export function AboutTeaser({ about }: Props) {
     <section className="max-w-7xl mx-auto px-4 py-16">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-        {/* Image */}
+        {/* Image — rendered second on desktop so text leads */}
         {about.storyImage ? (
-          <div className="overflow-hidden rounded-(--radius-base)">
+          <div className="overflow-hidden rounded-(--radius-base) lg:order-last">
             <img
               src={about.storyImage}
               alt={about.heading}
@@ -29,7 +29,7 @@ export function AboutTeaser({ about }: Props) {
           </div>
         ) : (
           <div
-            className="w-full h-80 lg:h-[480px] rounded-(--radius-base)"
+            className="w-full h-80 lg:h-[480px] rounded-(--radius-base) lg:order-last"
             style={{ backgroundColor: 'var(--color-primary-light)' }}
           />
         )}

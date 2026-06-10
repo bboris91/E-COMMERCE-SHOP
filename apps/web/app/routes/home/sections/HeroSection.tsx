@@ -14,10 +14,8 @@ type HeroData = {
 
 const SLIDE_INTERVAL = 4000
 
-const sectionStyle = (dark: boolean) => ({
-  background: dark
-    ? 'linear-gradient(135deg, #1a1018 0%, #2a1520 50%, #3a1a28 100%)'
-    : 'linear-gradient(135deg, #fff5f7 0%, #fde8ef 50%, #f9d0df 100%)',
+const sectionStyle = () => ({
+  background: 'linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-background) 100%)',
   minHeight: 'calc(100vh - 80px)',
 })
 
@@ -40,16 +38,7 @@ function CTAButtons({ hero }: { hero: HeroData }) {
 
 export function HeroSection({ hero }: { hero: HeroData }) {
   const images = hero.backgroundImages?.filter(Boolean) ?? []
-  const [dark, setDark] = useState(false)
   const [active, setActive] = useState(0)
-
-  useEffect(() => {
-    const check = () => setDark(document.documentElement.dataset.dark === 'true')
-    check()
-    const observer = new MutationObserver(check)
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-dark'] })
-    return () => observer.disconnect()
-  }, [])
   const slidesRef = useRef<(HTMLDivElement | null)[]>([])
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const count = images.length
@@ -95,7 +84,7 @@ export function HeroSection({ hero }: { hero: HeroData }) {
 
   if (!images.length) {
     return (
-      <section className="w-full flex items-center justify-center text-center px-4 py-24 flex-col" style={sectionStyle(dark)}>
+      <section className="w-full flex items-center justify-center text-center px-4 py-24 flex-col" style={sectionStyle()}>
         <h1 className="text-4xl md:text-6xl font-bold mb-4" style={{ color: 'var(--color-primary)' }}>{hero.heading}</h1>
         {hero.subheading && <p className="text-lg md:text-xl mb-8" style={{ color: 'var(--color-text-muted)' }}>{hero.subheading}</p>}
         <CTAButtons hero={hero} />
@@ -104,7 +93,7 @@ export function HeroSection({ hero }: { hero: HeroData }) {
   }
 
   return (
-    <section className="w-full overflow-hidden flex flex-col justify-center" style={sectionStyle(dark)}>
+    <section className="w-full overflow-hidden flex flex-col justify-center" style={sectionStyle()}>
 
       {/* Text */}
       <div className="text-center px-4 pt-10 pb-8 relative z-20">

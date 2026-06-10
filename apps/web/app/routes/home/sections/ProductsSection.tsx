@@ -17,9 +17,14 @@ export function ProductsSection({ products }: { products: ProductCard[] }) {
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-16">
-      <h2 className="text-2xl font-bold mb-8" style={{ color: 'var(--color-text)' }}>
-        {t('products.ourProducts')}
-      </h2>
+      <div className="mb-8">
+        <span className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-3" style={{ backgroundColor: 'var(--color-accent)', color: '#fff' }}>
+          {t('products.collection')}
+        </span>
+        <h2 className="text-3xl md:text-4xl font-bold" style={{ color: 'var(--color-text)' }}>
+          {t('products.ourProducts')}
+        </h2>
+      </div>
       {products.length === 0 ? (
         <p style={{ color: 'var(--color-text-muted)' }}>
           {t('products.noProductsHome')}

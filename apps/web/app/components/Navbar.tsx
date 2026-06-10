@@ -48,7 +48,7 @@ export function Navbar({ shopName, logo, dark, onToggleDark }: Props) {
               <Link
                 key={link.path}
                 to={link.path}
-                className="text-xl font-medium transition-colors"
+                className="text-sm font-medium transition-colors"
                 style={{ color: isActive(link.path) ? 'var(--color-primary)' : 'var(--color-text-muted)' }}
               >
                 {link.name}

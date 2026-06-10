@@ -88,13 +88,13 @@ export function Footer({
               {contactPhone && (
                 <li className="flex items-start gap-2">
                   <Phone className="w-4 h-4 mt-0.5 shrink-0" />
-                  <span>{contactPhone}</span>
+                  <a href={`tel:${contactPhone}`} className="hover:opacity-100 transition-opacity">{contactPhone}</a>
                 </li>
               )}
               {contactEmail && (
                 <li className="flex items-start gap-2">
                   <Mail className="w-4 h-4 mt-0.5 shrink-0" />
-                  <span>{contactEmail}</span>
+                  <a href={`mailto:${contactEmail}`} className="hover:opacity-100 transition-opacity">{contactEmail}</a>
                 </li>
               )}
               {address && (
