@@ -1,5 +1,6 @@
 import type { Route } from './+types/index'
 import { sanityFetch } from '../../lib/sanity'
+import { buildMeta } from '../../lib/meta'
 import { postBySlugQuery } from '../../queries/posts'
 import { PostHeader } from './sections/PostHeader'
 import { PostBody } from './sections/PostBody'
@@ -28,8 +29,13 @@ export async function loader({ params }: Route.LoaderArgs) {
 
 export function meta({ loaderData }: Route.MetaArgs) {
   const title = loaderData?.post?.seo?.title ?? loaderData?.post?.title ?? 'Blog'
-  const description = loaderData?.post?.seo?.description ?? loaderData?.post?.excerpt ?? ''
-  return [{ title: `${title} – Flora Bianca` }, { name: 'description', content: description }]
+  return buildMeta({
+    title,
+    description: loaderData?.post?.seo?.description ?? loaderData?.post?.excerpt ?? `${title} — Flora Bianca blog.`,
+    path: `/blog/${loaderData?.post?.slug ?? ''}`,
+    image: loaderData?.post?.mainImage ?? undefined,
+    type: 'article',
+  })
 }
 
 export default function BlogPost({ loaderData }: Route.ComponentProps) {

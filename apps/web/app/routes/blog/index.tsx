@@ -1,5 +1,6 @@
 import type { Route } from './+types/index'
 import { sanityFetch } from '../../lib/sanity'
+import { buildMeta } from '../../lib/meta'
 import { postsQuery } from '../../queries/posts'
 import { FeaturedPost } from './sections/FeaturedPost'
 import { PostGrid } from './sections/PostGrid'
@@ -24,10 +25,11 @@ export async function loader() {
 }
 
 export function meta() {
-  return [
-    { title: 'Blog – Flora Bianca' },
-    { name: 'description', content: 'Saveti, inspiracija i priče iz sveta cveća.' },
-  ]
+  return buildMeta({
+    title: 'Blog',
+    description: 'Saveti, inspiracija i priče iz sveta cveća — Flora Bianca blog, cvećara Vrbas.',
+    path: '/blog',
+  })
 }
 
 export default function Blog({ loaderData }: Route.ComponentProps) {

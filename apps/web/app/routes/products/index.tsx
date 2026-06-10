@@ -1,5 +1,6 @@
 import type { Route } from './+types/index'
 import { sanityFetch } from '../../lib/sanity'
+import { buildMeta } from '../../lib/meta'
 import { productsQuery } from '../../queries/products'
 import { categoriesQuery } from '../../queries/categories'
 import { CategoryFilter } from './sections/CategoryFilter'
@@ -37,7 +38,11 @@ export async function loader({ request }: Route.LoaderArgs) {
 }
 
 export function meta() {
-  return [{ title: 'Proizvodi — Flora Bianca' }]
+  return buildMeta({
+    title: 'Proizvodi',
+    description: 'Pogledajte naš asortiman svežeg cveća — buketi, aranžmani, ruže i saksijsko cveće. Flora Bianca cvećara, Vrbas.',
+    path: '/products',
+  })
 }
 
 export default function Products({ loaderData }: Route.ComponentProps) {

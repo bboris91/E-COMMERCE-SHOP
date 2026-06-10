@@ -79,6 +79,42 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {data?.favicon && (
           <link rel="icon" type="image/png" href={data.favicon} />
         )}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FloristShop',
+              name: data?.nav?.shopName ?? 'Flora Bianca',
+              url: 'https://florabianca.rs',
+              logo: 'https://florabianca.rs/og-image.jpg',
+              image: 'https://florabianca.rs/og-image.jpg',
+              description: data?.footer?.tagline ?? undefined,
+              ...(data?.footer?.contactPhone && { telephone: data.footer.contactPhone }),
+              ...(data?.footer?.contactEmail && { email: data.footer.contactEmail }),
+              ...(data?.footer?.address && {
+                address: {
+                  '@type': 'PostalAddress',
+                  streetAddress: data.footer.address,
+                  addressCountry: 'RS',
+                },
+              }),
+              geo: {
+                '@type': 'GeoCoordinates',
+                latitude: 45.5695554,
+                longitude: 19.644669,
+              },
+              ...(data?.footer?.openingHours && data.footer.openingHours.length > 0 && {
+                openingHours: data.footer.openingHours.map((r) => `${r.days} ${r.hours}`),
+              }),
+              sameAs: [
+                data?.footer?.socialLinks?.instagram,
+                data?.footer?.socialLinks?.facebook,
+                data?.footer?.socialLinks?.tiktok,
+              ].filter(Boolean),
+            }),
+          }}
+        />
       </head>
       <body>
         <I18nextProvider i18n={i18n}>

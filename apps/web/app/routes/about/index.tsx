@@ -1,5 +1,6 @@
 import type { Route } from './+types/index'
 import { sanityFetch } from '../../lib/sanity'
+import { buildMeta } from '../../lib/meta'
 import { aboutPageQuery } from '../../queries/about'
 import { HeaderSection } from './sections/HeaderSection'
 import { StorySection } from './sections/StorySection'
@@ -25,9 +26,11 @@ export async function loader() {
 }
 
 export function meta({ loaderData }: Route.MetaArgs) {
-  const title = loaderData?.about?.seo?.title ?? 'O nama – Flora Bianca'
-  const description = loaderData?.about?.seo?.description ?? 'Saznajte više o Flora Bianca.'
-  return [{ title }, { name: 'description', content: description }]
+  return buildMeta({
+    title: loaderData?.about?.seo?.title ?? 'O nama',
+    description: loaderData?.about?.seo?.description ?? 'Upoznajte Flora Bianca — porodičnu cvećaru iz Vrbasa. Ručno izrađeni aranžmani i sveže cveće za svaku priliku.',
+    path: '/o-nama',
+  })
 }
 
 export default function About({ loaderData }: Route.ComponentProps) {

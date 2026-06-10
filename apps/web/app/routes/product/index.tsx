@@ -1,5 +1,6 @@
 import type { Route } from './+types/index'
 import { sanityFetch } from '../../lib/sanity'
+import { buildMeta } from '../../lib/meta'
 import { productBySlugQuery } from '../../queries/products'
 import { ProductImages } from './sections/ProductImages'
 import { ProductInfo } from './sections/ProductInfo'
@@ -21,9 +22,14 @@ export async function loader({ params }: Route.LoaderArgs) {
 }
 
 export function meta({ loaderData }: Route.MetaArgs) {
-  const title = loaderData?.product?.seo?.title ?? loaderData?.product?.title ?? 'Product'
-  const description = loaderData?.product?.seo?.description ?? ''
-  return [{ title: `${title} — Flora Bianca` }, { name: 'description', content: description }]
+  const title = loaderData?.product?.seo?.title ?? loaderData?.product?.title ?? 'Proizvod'
+  return buildMeta({
+    title,
+    description: loaderData?.product?.seo?.description ?? `${title} — Flora Bianca cvećara, Vrbas.`,
+    path: `/products/${loaderData?.product?.slug ?? ''}`,
+    image: loaderData?.product?.images?.[0],
+    type: 'product',
+  })
 }
 
 export default function Product({ loaderData }: Route.ComponentProps) {

@@ -1,8 +1,10 @@
 import type { Route } from './+types/index'
 import { sanityFetch } from '../../lib/sanity'
+import { buildMeta } from '../../lib/meta'
 import { heroQuery } from '../../queries/hero'
 import { productsQuery } from '../../queries/products'
 import { aboutPageQuery } from '../../queries/about'
+import { siteSettingsQuery } from '../../queries/siteSettings'
 import { HeroSection } from './sections/HeroSection'
 import { ProductsSection } from './sections/ProductsSection'
 import { AboutTeaser } from './sections/AboutTeaser'
@@ -31,20 +33,27 @@ type AboutTeaserData = {
   storyImage: string | null
 }
 
+type SiteSettings = {
+  shopName: string | null
+  defaultSeo: { title: string | null; description: string | null } | null
+}
+
 export async function loader() {
-  const [hero, products, about] = await Promise.all([
+  const [hero, products, about, siteSettings] = await Promise.all([
     sanityFetch<HeroData>(heroQuery),
     sanityFetch<ProductCard[]>(productsQuery),
     sanityFetch<AboutTeaserData>(aboutPageQuery),
+    sanityFetch<SiteSettings>(siteSettingsQuery),
   ])
-  return { hero, products, about }
+  return { hero, products, about, siteSettings }
 }
 
-export function meta() {
-  return [
-    { title: 'Flora Bianca' },
-    { name: 'description', content: 'Sveže cveće za svaku priliku.' },
-  ]
+export function meta({ loaderData }: Route.MetaArgs) {
+  return buildMeta({
+    title: loaderData?.siteSettings?.defaultSeo?.title ?? 'Flora Bianca — Cvećara Vrbas',
+    description: loaderData?.siteSettings?.defaultSeo?.description ?? 'Flora Bianca — cvećara u Vrbasu. Sveži buketi, aranžmani i saksijsko cveće za svaku priliku. Posetite nas na M. Tita 125, Vrbas.',
+    path: '/',
+  })
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
