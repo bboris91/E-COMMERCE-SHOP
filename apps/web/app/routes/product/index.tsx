@@ -39,7 +39,7 @@ export default function Product({ loaderData }: Route.ComponentProps) {
     <main className="max-w-5xl mx-auto px-4 py-16">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <ProductImages images={product.images} title={product.title} />
-        <ProductInfo title={product.title} category={product.category} />
+        <ProductInfo title={product.title} category={product.category} description={product.description} />
       </div>
     </main>
   )
