@@ -9,6 +9,7 @@
   "scripts": {
     "seed": "tsx seed/seed.ts",
     "seed:blog": "tsx seed/seed-blog.ts",
+    "seed:blog-post": "tsx seed/seed-blog-post.ts",
     "seed:layout": "tsx seed/seed-layout.ts",
     "seed:all": "tsx seed/seed.ts && tsx seed/seed-blog.ts && tsx seed/seed-layout.ts"
   },
