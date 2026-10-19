@@ -1,5 +1,7 @@
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
+import { ArrowLeft } from 'lucide-react'
+import { delay } from '../../../lib/motion'
 
 type Props = {
   title: string
@@ -23,9 +25,10 @@ export function PostHeader({ title, publishedAt, mainImage, mainImageAlt, author
     <>
       <Link
         to="/blog"
-        className="inline-flex items-center gap-1 text-sm mb-8 transition-opacity hover:opacity-70"
+        className="group inline-flex items-center gap-1.5 text-sm mb-8 transition-colors hover:text-primary animate-fade-in"
         style={{ color: 'var(--color-text-muted)' }}
       >
+        <ArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
         {t('blog.backToBlog')}
       </Link>
 
@@ -39,11 +42,11 @@ export function PostHeader({ title, publishedAt, mainImage, mainImageAlt, author
         </div>
       )}
 
-      <h1 className="text-4xl font-bold mb-6 leading-tight" style={{ color: 'var(--color-text)' }}>
+      <h1 className="text-4xl md:text-5xl font-semibold mb-6 leading-tight animate-fade-up" style={{ color: 'var(--color-text)' }}>
         {title}
       </h1>
 
-      <div className="flex flex-wrap items-center gap-4 text-sm pb-6 mb-8 border-b" style={{ color: 'var(--color-text-muted)', borderColor: 'var(--color-border)' }}>
+      <div className="flex flex-wrap items-center gap-4 text-sm pb-6 mb-8 border-b animate-fade-up" style={{ ...delay(100), color: 'var(--color-text-muted)', borderColor: 'var(--color-border)' }}>
         {author && (
           <div className="flex items-center gap-2">
             {author.image && (
@@ -56,11 +59,13 @@ export function PostHeader({ title, publishedAt, mainImage, mainImageAlt, author
       </div>
 
       {mainImage && (
-        <img
-          src={mainImage}
-          alt={mainImageAlt ?? title}
-          className="w-full rounded-(--radius-base) object-cover mb-10 max-h-120"
-        />
+        <div className="overflow-hidden rounded-(--radius-base) mb-10 animate-fade-up" style={delay(200)}>
+          <img
+            src={mainImage}
+            alt={mainImageAlt ?? title}
+            className="w-full object-cover max-h-120 animate-[ken-burns_1.6s_var(--ease-soft)_backwards]"
+          />
+        </div>
       )}
     </>
   )

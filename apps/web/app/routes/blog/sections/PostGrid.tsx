@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
+import { stagger } from '../../../lib/motion'
 
 type PostCard = {
   _id: string
@@ -28,19 +29,19 @@ export function PostGrid({ posts }: { posts: PostCard[] }) {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      {posts.map((post) => (
+      {posts.map((post, i) => (
+        <div key={post._id} data-reveal="" style={stagger(i % 3, 100)} className="flex">
         <Link
-          key={post._id}
           to={`/blog/${post.slug}`}
-          className="group rounded-(--radius-base) overflow-hidden border transition-shadow hover:shadow-lg flex flex-col"
-          style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)' }}
+          className="card group w-full flex flex-col"
         >
           <div className="relative h-48 overflow-hidden">
             {post.mainImage ? (
               <img
                 src={post.mainImage}
                 alt={post.mainImageAlt ?? post.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                className="card-img w-full h-full object-cover"
               />
             ) : (
               <div className="w-full h-full" style={{ backgroundColor: 'var(--color-primary-light)' }} />
@@ -52,7 +53,7 @@ export function PostGrid({ posts }: { posts: PostCard[] }) {
                 {post.categories[0].title}
               </span>
             )}
-            <h3 className="font-bold text-lg mb-2 line-clamp-2" style={{ color: 'var(--color-text)' }}>
+            <h3 className="font-display font-semibold text-xl mb-2 line-clamp-2 transition-colors group-hover:text-primary" style={{ color: 'var(--color-text)' }}>
               {post.title}
             </h3>
             {post.excerpt && (
@@ -66,6 +67,7 @@ export function PostGrid({ posts }: { posts: PostCard[] }) {
             </div>
           </div>
         </Link>
+        </div>
       ))}
     </div>
   )

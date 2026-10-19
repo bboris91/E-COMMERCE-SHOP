@@ -51,7 +51,7 @@ export default function Products({ loaderData }: Route.ComponentProps) {
 
   return (
     <main className="max-w-7xl mx-auto px-4 py-16">
-      <h1 className="text-3xl font-bold mb-8" style={{ color: 'var(--color-text)' }}>
+      <h1 className="text-4xl md:text-5xl font-semibold mb-8 animate-fade-up" style={{ color: 'var(--color-text)' }}>
         {t('products.title')}
       </h1>
       <CategoryFilter categories={categories} activeCategory={activeCategory} />

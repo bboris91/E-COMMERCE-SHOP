@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { PortableText } from '@portabletext/react'
+import { delay } from '../../../lib/motion'
 
 type Props = {
   title: string
@@ -11,13 +12,11 @@ export function ProductInfo({ title, category, description }: Props) {
   const { t } = useTranslation()
 
   return (
-    <div>
+    <div className="md:sticky md:top-28 self-start animate-fade-up" style={delay(150)}>
       {category && (
-        <span className="text-sm font-medium uppercase tracking-wide" style={{ color: 'var(--color-accent)' }}>
-          {category.title}
-        </span>
+        <span className="eyebrow">{category.title}</span>
       )}
-      <h1 className="text-3xl font-bold mt-2 mb-6" style={{ color: 'var(--color-text)' }}>
+      <h1 className="text-3xl md:text-5xl font-semibold mt-3 mb-6 leading-tight" style={{ color: 'var(--color-text)' }}>
         {title}
       </h1>
       {description && (

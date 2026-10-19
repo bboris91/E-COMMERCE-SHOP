@@ -5,6 +5,7 @@ import { postsQuery } from '../../queries/posts'
 import { FeaturedPost } from './sections/FeaturedPost'
 import { PostGrid } from './sections/PostGrid'
 import { useTranslation } from 'react-i18next'
+import { delay } from '../../lib/motion'
 
 type PostCard = {
   _id: string
@@ -41,10 +42,10 @@ export default function Blog({ loaderData }: Route.ComponentProps) {
   return (
     <main className="max-w-7xl mx-auto px-4 py-16">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-3" style={{ color: 'var(--color-primary)' }}>
+        <h1 className="text-4xl md:text-6xl font-semibold mb-4 animate-fade-up" style={{ color: 'var(--color-primary)' }}>
           {t('blog.title')}
         </h1>
-        <p className="text-lg" style={{ color: 'var(--color-text-muted)' }}>
+        <p className="text-lg animate-fade-up" style={{ ...delay(120), color: 'var(--color-text-muted)' }}>
           {t('blog.subtitle')}
         </p>
       </div>

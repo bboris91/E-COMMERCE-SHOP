@@ -1,15 +1,8 @@
-import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
+import { ProductCard, type ProductCardData } from '../../../components/ProductCard'
+import { stagger } from '../../../lib/motion'
 
-type ProductCard = {
-  _id: string
-  title: string
-  slug: string
-  image: string | null
-  category: { title: string; slug: string } | null
-}
-
-export function ProductGrid({ products }: { products: ProductCard[] }) {
+export function ProductGrid({ products }: { products: ProductCardData[] }) {
   const { t } = useTranslation()
 
   if (products.length === 0) {
@@ -18,38 +11,8 @@ export function ProductGrid({ products }: { products: ProductCard[] }) {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      {products.map((product) => (
-        <Link
-          key={product._id}
-          to={`/products/${product.slug}`}
-          className="group rounded-(--radius-base) overflow-hidden border transition-shadow hover:shadow-lg"
-          style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)' }}
-        >
-          {product.image ? (
-            <img
-              src={product.image}
-              alt={product.title}
-              className="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-          ) : (
-            <div
-              className="w-full aspect-square flex items-center justify-center"
-              style={{ backgroundColor: 'var(--color-primary-light)' }}
-            >
-              <span style={{ color: 'var(--color-text-muted)' }}>{t('products.noImage')}</span>
-            </div>
-          )}
-          <div className="p-4">
-            {product.category && (
-              <span className="text-xs font-medium uppercase tracking-wide" style={{ color: 'var(--color-accent)' }}>
-                {product.category.title}
-              </span>
-            )}
-            <h3 className="font-semibold mt-1" style={{ color: 'var(--color-text)' }}>
-              {product.title}
-            </h3>
-          </div>
-        </Link>
+      {products.map((product, i) => (
+        <ProductCard key={product._id} product={product} className="animate-fade-up" style={stagger(i)} />
       ))}
     </div>
   )

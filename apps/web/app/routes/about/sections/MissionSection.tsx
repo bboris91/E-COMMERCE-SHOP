@@ -10,12 +10,13 @@ export function MissionSection({ heading, text }: Props) {
     <section className="py-16 sm:py-20 px-4">
       <div className="max-w-3xl mx-auto text-center">
         <div
-          className="rounded-(--radius-base) px-8 py-12 sm:px-16"
-          style={{ background: 'linear-gradient(135deg, var(--color-primary-light), var(--color-background))' }}
+          data-reveal="zoom"
+          className="rounded-(--radius-base) px-8 py-12 sm:px-16 border"
+          style={{ background: 'linear-gradient(135deg, var(--color-primary-light), var(--color-background))', borderColor: 'var(--color-border)' }}
         >
           {heading && (
             <h2
-              className="text-2xl sm:text-3xl font-bold mb-6"
+              className="text-3xl sm:text-4xl font-semibold mb-6"
               style={{ color: 'var(--color-primary)' }}
             >
               {heading}

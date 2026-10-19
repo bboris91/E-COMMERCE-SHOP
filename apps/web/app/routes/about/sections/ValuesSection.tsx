@@ -1,3 +1,4 @@
+import { stagger } from '../../../lib/motion'
 import { Heart, Users, Award, Leaf, Star, Smile, Globe, Zap, UserStar, Gem, type LucideIcon } from 'lucide-react'
 
 const iconMap: Record<string, LucideIcon> = {
@@ -23,19 +24,20 @@ export function ValuesSection({ heading, values }: Props) {
       <div className="max-w-7xl mx-auto">
         {heading && (
           <h2
-            className="text-2xl sm:text-3xl font-bold text-center mb-12"
+            className="text-3xl sm:text-4xl font-semibold text-center mb-12"
+            data-reveal=""
             style={{ color: 'var(--color-primary)' }}
           >
             {heading}
           </h2>
         )}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {values.map(({ icon, title, description }) => {
+          {values.map(({ icon, title, description }, i) => {
             const Icon = (icon && iconMap[icon]) || Heart
             return (
-              <div key={title} className="text-center">
+              <div key={title} className="group text-center" data-reveal="zoom" style={stagger(i, 100)}>
                 <div
-                  className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-5"
+                  className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-5 shadow-sm transition-transform duration-500 ease-soft group-hover:-translate-y-1 group-hover:rotate-6 group-hover:scale-110"
                   style={{ backgroundColor: 'var(--color-surface)' }}
                 >
                   <Icon size={28} style={{ color: 'var(--color-primary)' }} />

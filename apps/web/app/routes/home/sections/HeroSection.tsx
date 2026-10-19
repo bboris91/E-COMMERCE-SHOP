@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, EffectFade, Pagination } from 'swiper/modules'
 import 'swiper/swiper-bundle.css'
+import { ArrowRight } from 'lucide-react'
+import { delay } from '../../../lib/motion'
 
 type HeroData = {
   heading: string
@@ -21,17 +23,54 @@ const sectionStyle = () => ({
 
 function CTAButtons({ hero }: { hero: HeroData }) {
   return (
-    <div className="flex gap-4 justify-center flex-wrap">
+    <div className="flex gap-4 justify-center flex-wrap animate-fade-up" style={delay(300)}>
       {hero.primaryCta && (
-        <Link to={hero.primaryCta.href} className="px-6 py-3 rounded-(--radius-base) font-semibold transition-opacity hover:opacity-90" style={{ backgroundColor: 'var(--color-primary)', color: '#fff' }}>
+        <Link to={hero.primaryCta.href} className="btn btn-primary">
           {hero.primaryCta.label}
+          <ArrowRight className="btn-arrow w-4 h-4" />
         </Link>
       )}
       {hero.secondaryCta && (
-        <Link to={hero.secondaryCta.href} className="px-6 py-3 rounded-(--radius-base) font-semibold border transition-opacity hover:opacity-80" style={{ borderColor: 'var(--color-primary)', color: 'var(--color-primary)', backgroundColor: 'rgba(255,255,255,0.6)' }}>
+        <Link to={hero.secondaryCta.href} className="btn btn-outline">
           {hero.secondaryCta.label}
         </Link>
       )}
+    </div>
+  )
+}
+
+function HeroText({ hero }: { hero: HeroData }) {
+  return (
+    <>
+      <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold mb-5 max-w-4xl mx-auto leading-[1.05] animate-fade-up" style={{ color: 'var(--color-primary)' }}>
+        {hero.heading}
+      </h1>
+      {hero.subheading && (
+        <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto animate-fade-up" style={{ ...delay(150), color: 'var(--color-text-muted)' }}>
+          {hero.subheading}
+        </p>
+      )}
+      <CTAButtons hero={hero} />
+    </>
+  )
+}
+
+// Soft floating color shapes behind the hero content
+function Blobs() {
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+      <div
+        className="absolute -top-24 -left-24 w-[28rem] h-[28rem] rounded-full blur-3xl opacity-40 animate-float"
+        style={{ backgroundColor: 'var(--color-accent)' }}
+      />
+      <div
+        className="absolute top-1/3 -right-32 w-[32rem] h-[32rem] rounded-full blur-3xl opacity-25 animate-float"
+        style={{ backgroundColor: 'var(--color-primary)', animationDelay: '-6s' }}
+      />
+      <div
+        className="absolute -bottom-32 left-1/3 w-[24rem] h-[24rem] rounded-full blur-3xl opacity-30 animate-float"
+        style={{ backgroundColor: 'var(--color-accent)', animationDelay: '-11s' }}
+      />
     </div>
   )
 }
@@ -84,26 +123,24 @@ export function HeroSection({ hero }: { hero: HeroData }) {
 
   if (!images.length) {
     return (
-      <section className="w-full flex items-center justify-center text-center px-4 py-24 flex-col" style={sectionStyle()}>
-        <h1 className="text-4xl md:text-6xl font-bold mb-4" style={{ color: 'var(--color-primary)' }}>{hero.heading}</h1>
-        {hero.subheading && <p className="text-lg md:text-xl mb-8" style={{ color: 'var(--color-text-muted)' }}>{hero.subheading}</p>}
-        <CTAButtons hero={hero} />
+      <section className="relative isolate overflow-hidden w-full flex items-center justify-center text-center px-4 py-24 flex-col" style={sectionStyle()}>
+        <Blobs />
+        <HeroText hero={hero} />
       </section>
     )
   }
 
   return (
-    <section className="w-full overflow-hidden flex flex-col justify-center" style={sectionStyle()}>
+    <section className="relative isolate w-full overflow-hidden flex flex-col justify-center" style={sectionStyle()}>
+      <Blobs />
 
       {/* Text */}
       <div className="text-center px-4 pt-10 pb-8 relative z-20">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4" style={{ color: 'var(--color-primary)' }}>{hero.heading}</h1>
-        {hero.subheading && <p className="text-lg md:text-xl mb-6" style={{ color: 'var(--color-text-muted)' }}>{hero.subheading}</p>}
-        <CTAButtons hero={hero} />
+        <HeroText hero={hero} />
       </div>
 
       {/* Mobile — Swiper fade */}
-      <div className="block md:hidden px-3 pb-10">
+      <div className="block md:hidden px-3 pb-10 animate-fade-up" style={delay(450)}>
         <Swiper
           modules={[Autoplay, EffectFade, Pagination]}
           effect="fade"
@@ -114,7 +151,7 @@ export function HeroSection({ hero }: { hero: HeroData }) {
         >
           {images.map((url, i) => (
             <SwiperSlide key={i}>
-              <div className="rounded-lg overflow-hidden shadow-xl" style={{ aspectRatio: '16/9' }}>
+              <div className="rounded-(--radius-base) overflow-hidden shadow-xl" style={{ aspectRatio: '16/9' }}>
                 <img src={url} alt="" className="w-full h-full object-cover" />
               </div>
             </SwiperSlide>
@@ -123,14 +160,14 @@ export function HeroSection({ hero }: { hero: HeroData }) {
       </div>
 
       {/* Desktop — GSAP 3D carousel */}
-      <div className="hidden md:block pb-10">
+      <div className="hidden md:block pb-10 animate-fade-up" style={delay(450)}>
         <div className="relative flex items-center justify-center" style={{ height: '420px', perspective: '1200px' }}>
           {images.map((url, i) => (
             <div
               key={i}
               ref={(el) => { slidesRef.current[i] = el }}
               onClick={() => goTo(i)}
-              className="absolute rounded-lg overflow-hidden shadow-2xl cursor-pointer"
+              className="absolute rounded-(--radius-base) overflow-hidden shadow-2xl cursor-pointer"
               style={{ width: '55%', maxWidth: '720px', aspectRatio: '16/9', transformStyle: 'preserve-3d', willChange: 'transform' }}
             >
               <img src={url} alt="" className="w-full h-full object-cover" />

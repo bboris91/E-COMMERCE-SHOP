@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
+import { delay } from '../../../lib/motion'
 
 type Category = {
   _id: string
@@ -11,10 +12,10 @@ export function CategoryFilter({ categories, activeCategory }: { categories: Cat
   const { t } = useTranslation()
 
   return (
-    <div className="flex gap-2 flex-wrap mb-10">
+    <div className="flex gap-2 flex-wrap mb-10 animate-fade-up" style={delay(100)}>
       <Link
         to="/products"
-        className="px-4 py-2 rounded-(--radius-base) text-sm font-medium border transition-colors"
+        className="px-4 py-2 rounded-full text-sm font-medium border transition-all duration-300 hover:-translate-y-0.5 hover:border-primary"
         style={
           !activeCategory
             ? { backgroundColor: 'var(--color-primary)', color: '#fff', borderColor: 'var(--color-primary)' }
@@ -27,7 +28,7 @@ export function CategoryFilter({ categories, activeCategory }: { categories: Cat
         <Link
           key={cat._id}
           to={`/products?category=${cat.slug}`}
-          className="px-4 py-2 rounded-(--radius-base) text-sm font-medium border transition-colors"
+          className="px-4 py-2 rounded-full text-sm font-medium border transition-all duration-300 hover:-translate-y-0.5 hover:border-primary"
           style={
             activeCategory === cat.slug
               ? { backgroundColor: 'var(--color-primary)', color: '#fff', borderColor: 'var(--color-primary)' }

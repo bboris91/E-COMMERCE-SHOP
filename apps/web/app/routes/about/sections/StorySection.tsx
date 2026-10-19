@@ -1,3 +1,5 @@
+import { delay } from '../../../lib/motion'
+
 type Props = {
   heading: string | null
   paragraphs: string[] | null
@@ -8,10 +10,10 @@ export function StorySection({ heading, paragraphs, image }: Props) {
   return (
     <section className="py-12 sm:py-16 px-4">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div>
+        <div data-reveal="left">
           {heading && (
             <h2
-              className="text-2xl sm:text-3xl font-bold mb-6"
+              className="text-3xl sm:text-4xl font-semibold mb-6"
               style={{ color: 'var(--color-primary)' }}
             >
               {heading}
@@ -22,11 +24,11 @@ export function StorySection({ heading, paragraphs, image }: Props) {
           </div>
         </div>
         {image && (
-          <div className="rounded-(--radius-base) overflow-hidden aspect-4/3 lg:aspect-auto lg:h-96">
+          <div className="group rounded-(--radius-base) overflow-hidden aspect-4/3 lg:aspect-auto lg:h-96" data-reveal="right" style={delay(100)}>
             <img
               src={image}
               alt={heading ?? 'Flora Bianca'}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-transform duration-[1.2s] ease-soft group-hover:scale-105"
             />
           </div>
         )}

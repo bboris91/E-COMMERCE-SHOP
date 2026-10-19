@@ -1,5 +1,7 @@
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
+import { ArrowRight } from 'lucide-react'
+import { delay } from '../../../lib/motion'
 
 type PostCard = {
   _id: string
@@ -24,25 +26,24 @@ export function FeaturedPost({ post }: { post: PostCard }) {
   const { t } = useTranslation()
 
   return (
-    <div className="mb-14">
+    <div className="mb-16 animate-fade-up" style={delay(200)}>
       <Link
         to={`/blog/${post.slug}`}
-        className="grid grid-cols-1 lg:grid-cols-2 rounded-(--radius-base) overflow-hidden border transition-shadow hover:shadow-xl group"
-        style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)' }}
+        className="card group grid grid-cols-1 lg:grid-cols-2"
       >
         <div className="relative h-64 lg:h-auto overflow-hidden">
           {post.mainImage ? (
             <img
               src={post.mainImage}
               alt={post.mainImageAlt ?? post.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              className="card-img w-full h-full object-cover"
             />
           ) : (
             <div className="w-full h-full min-h-64" style={{ backgroundColor: 'var(--color-primary-light)' }} />
           )}
           <span
-            className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold"
-            style={{ backgroundColor: 'var(--color-primary)', color: '#fff' }}
+            className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-md"
+            style={{ backgroundColor: 'color-mix(in srgb, var(--color-primary) 85%, transparent)', color: '#fff' }}
           >
             {t('blog.featured')}
           </span>
@@ -53,7 +54,7 @@ export function FeaturedPost({ post }: { post: PostCard }) {
               {post.categories[0].title}
             </span>
           )}
-          <h2 className="text-2xl lg:text-3xl font-bold mb-4" style={{ color: 'var(--color-text)' }}>
+          <h2 className="text-2xl lg:text-4xl font-semibold mb-4 leading-tight" style={{ color: 'var(--color-text)' }}>
             {post.title}
           </h2>
           {post.excerpt && (
@@ -65,11 +66,9 @@ export function FeaturedPost({ post }: { post: PostCard }) {
             {post.author && <span>{post.author.name}</span>}
             {post.publishedAt && <span>{formatDate(post.publishedAt)}</span>}
           </div>
-          <span
-            className="mt-6 self-start px-5 py-2.5 rounded-(--radius-base) text-sm font-semibold transition-opacity hover:opacity-90"
-            style={{ backgroundColor: 'var(--color-primary)', color: '#fff' }}
-          >
+          <span className="btn btn-primary mt-6 self-start text-sm">
             {t('blog.readMore')}
+            <ArrowRight className="btn-arrow w-4 h-4" />
           </span>
         </div>
       </Link>
